@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>websocket test page</title>
+</head>
+<body>
+    <h1>WebSocket Test Page!!</h1>
+</body>
+</html>
+<script>
+    var wsUrl = "ws://127.0.0.1:9501";
+    var webSocket = new WebSocket(wsUrl);
+    //实例对象onopen属性
+     webSocket.onopen = function (ent) {
+        webSocket.send('hello Mokey');
+        console.log('connect-swoole-success');
+    };
+    //实例化 message ，用于接受服务端 push 的数据
+     webSocket.onmessage = function (ent) {
+        console.log('ws-server-return-data------>> '  +  ent.data);
+    };
+     //实例化 close事件
+    webSocket.onclose = function (ent) {
+        console.log('关闭服务');
+    };
+    webSocket.onerror = function (ent, e) {
+        console.log('error->' + ent.data)
+    }
+
+</script>
